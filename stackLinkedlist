@@ -1,0 +1,49 @@
+package stack;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class linkedListStack {
+       public static void main(String[] args)
+	    {
+	        Sta s = new Sta();
+	        
+	        s.push("a");
+	        s.push("b");
+	        s.push("c");
+	        s.push("d");
+	   
+	        System.out.println(s.peek());
+	        System.out.println(s.pop());    
+	    }  
+       }	
+      
+ class Sta{
+		 LinkedList<String> list=new LinkedList<>(); 
+	
+		 public void push(String x)
+		 {
+			 list.add(x);
+		 }
+			
+		 public String pop()       
+		 {
+			 if(!list.isEmpty()){
+				 return list.removeLast();
+				 }
+			 else return null; 
+		 }
+		 public String peek()
+		 {
+			 if(!list.isEmpty()){
+				 return  list.getLast();
+				 }
+			 else return null;  
+		 }
+		 public boolean isEmpty()
+		 {
+			 return list.isEmpty();
+		 }
+       }
+
+
