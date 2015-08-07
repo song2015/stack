@@ -75,6 +75,7 @@ public class linklistQueue {
 			        return list.isEmpty();
 			    }
 			}
+	}
 			
 		
 
