@@ -1,0 +1,78 @@
+# stackpackage queue;
+
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+
+public class linklistQueue {
+
+	
+		 public static void main(String[] args)
+		    {
+		        Que qu = new Que();
+		        
+		        qu.add("aaa");
+		        qu.add("bbb");
+		        qu.offer("ccc");
+		        qu.remove();	        
+		        
+		        System.out.println(qu.peek());
+		        System.out.println(qu.isEmpty());
+		        System.out.println(qu.element());		   
+		    }
+	
+	
+	class Que
+	{	    
+	    private LinkedList<String> list = new LinkedList<>();
+	   
+	    public int full=100;
+	    
+	    public boolean add(String a)
+	    {
+	        list.add(a);
+	        if(list.size()>=full){
+	        	throw new IllegalStateException();        	
+	        }
+	    	else return true;
+	    }    
+	    public boolean offer(String b)
+	    {
+	    	list.add(b);
+	    	if(list.size()<full) return true;
+	    	else return false;	    	
+	    }
+	    
+	    public Object remove()
+	    {
+	        if(list.size()==0) {
+	        	throw new NoSuchElementException();	        	
+	        }
+	        else return list.remove();
+	    }
+	   
+	    public Object poll(){
+	    	if(list.size()!=0) return list.remove();
+	        else return null;
+	    }
+	    
+	    public Object element(){
+	    	if(list.size()!=0){
+	    		throw new NoSuchElementException();    		
+	    	}
+	    	else return list.getFirst();
+	    }
+	    
+	    public Object peek(){
+	    	if(list.size()!=0) return list.getFirst();
+	    	else return null;	        
+	    }
+	    
+	    
+	    public boolean isEmpty()
+	    {
+	        return list.isEmpty();
+	    }
+	}
+
+
+}
