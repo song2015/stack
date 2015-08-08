@@ -1,0 +1,78 @@
+package queue;
+
+import java.util.ArrayList;
+
+
+
+
+public class arrayListQueue {
+
+	public static void main(String[] args) {		 
+		MyArrayListQueue qu1 = new MyArrayListQueue();
+
+		System.out.println(qu1.remove());
+		System.out.println(qu1.element());
+
+		qu1.add("aaa");
+		qu1.add("bbb");
+		qu1.offer("ccc");
+		qu1.remove();	        
+
+		System.out.println(qu1.peek());
+		System.out.println(qu1.isEmpty());
+		System.out.println(qu1.element());		   
+	}		
+}
+class MyArrayListQueue
+{	    
+	private ArrayList<String> list1 = new ArrayList<>();		   
+
+	public int full=200;
+
+	public Object add(String aa)
+	{
+		list1.add(aa);
+		if(list1.size()>=full){
+			return null;        	
+		}
+		else return true;
+	}    
+
+	public boolean offer(String bb)
+	{
+		list1.add(bb);
+		if(list1.size()<full) return true;
+		else return false;	    	
+	}
+
+	public Object remove()
+	{
+		if(list1.size()==0) {
+			return null;	        	
+		}
+		else return list1.remove(1);
+	}
+
+	public Object poll(){
+		if(list1.size()!=0) return list1.remove(1);
+		else return null;
+	}
+
+	public Object element(){
+		if(list1.size()!=0){
+			return list1.get(1);			    		
+		}
+		else return null;
+	}
+
+	public Object peek(){
+		if(list1.size()!=0) return list1.get(1);
+		else return null;	        
+	}			    
+
+	public boolean isEmpty()
+	{
+		return list1.isEmpty();
+	}
+}
+
