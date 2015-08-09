@@ -6,7 +6,8 @@ public class TestStringArray {
 	public static void main(String[] args) {
 		MyStringArray sa=new MyStringArray();
 		
-		sa.isEmpty();
+		System.out.println(sa.isEmpty());
+		
 		sa.remove(0);
 		System.out.println(sa.size());
 
@@ -19,7 +20,8 @@ public class TestStringArray {
 		}
 		
 		System.out.println(sa.size());
-		sa.isEmpty();
+		
+		System.out.println(sa.isEmpty());
 		
 		sa.remove(1);
 		for(int i=0;i<sa.size();i++){
