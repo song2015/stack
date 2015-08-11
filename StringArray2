@@ -1,0 +1,92 @@
+package queue;
+
+
+public class TestStringArray {
+
+	public static void main(String[] args) {
+		MyStringArray sa=new MyStringArray(100);
+		
+		System.out.println(sa.isEmpty());
+		
+		sa.remove(0);
+		System.out.println(sa.size());
+
+		sa.add("apple");
+		sa.add("banana");
+		sa.add("peach");
+		
+		for(int i=0;i<sa.size();i++){
+			System.out.println(sa.get(i));
+		}
+		
+		System.out.println(sa.size());
+		
+		System.out.println(sa.isEmpty());
+		
+		sa.remove(1);
+		for(int i=0;i<sa.size();i++){
+			System.out.println(sa.get(i));
+		}
+		
+		System.out.println(sa.get(1));
+		System.out.println(sa.get(3));
+		
+	}
+}
+
+class MyStringArray{
+	
+	private int size;
+	
+	public MyStringArray(int si){
+		size=si;
+	}
+	
+	String[] s=new String[size]; 
+
+	private int i1=0;
+
+	public void add(String a){
+		while(s[i1]!=null){
+			i1++;
+		}
+		s[i1]=a;	
+	}
+
+	public void remove(int i2){
+		if(s[i2]!=null)
+		{
+			for(int i=i2;i<size;i++){
+				s[i2]=s[i2+1];
+			}
+			s[i2+1]=null;
+		}
+		else throw new NoElementException();
+	}
+
+	public String get(int i3){
+		if(s[i3]!=null) return s[i3];
+		else return "there is no element here"; 		
+	}
+
+	public int size(){
+		if (s!=null) {
+			int i4=0;
+			while(s[i4]!=null){
+				i4++;
+			}
+			return i4;
+		}
+		else return 0;
+	}
+
+	public boolean isEmpty(){
+		if (s!=null){
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+}
