@@ -34,7 +34,12 @@ public class TestStringArray {
 		}
 		
 		System.out.println(sa.get(1));
-		System.out.println(sa.get(3));
+		
+		try{
+			System.out.println(sa.get(3));
+		}catch(NoElementException e){
+			System.out.println("error");
+		}
 		
 	}
 }
