@@ -1,0 +1,157 @@
+package queue;
+
+import java.util.ArrayList;
+
+public class ArrayStack2 {
+	public static void main(String[] args) {
+
+
+		Stac s = new Stac();
+
+		s.push("a");
+		s.push("b");
+		s.push("c");
+		System.out.println(s.peek());
+		
+		try{
+			System.out.println(s.pop());
+			
+		} catch (NoElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try{
+			System.out.println(s.pop());
+			
+		} catch (NoElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try{
+			System.out.println(s.pop());
+			
+		} catch (NoElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+class Stac{
+	MyStringArray sarray=new MyStringArray(100);
+
+	ArrayList<String> list=new ArrayList<>();
+
+	public void push(String x)
+	{
+		sarray.add(x);
+	}
+
+	private int m=sarray.size()-1;
+
+	public String pop() throws NoElementException
+	{
+		if(!sarray.isEmpty())
+		{
+			try{
+				return sarray.get(m);
+				sarray.remove(m);
+			} catch (NoElementException e) {
+				throw new NoElementException();
+			}						
+						
+		}
+		return null;
+
+	}
+	public String peek()
+	{
+		if(!sarray.isEmpty())
+		{
+			try {
+				return sarray.get(m);
+			} catch (NoElementException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else return null;
+		return null; 
+	}
+	public boolean isEmpty()
+	{
+		return sarray.isEmpty();
+	}
+}
+
+class MyStringArray{
+
+	private int size;
+	String[] s = null; 
+
+
+	public MyStringArray(int si){
+		size=si;
+		s = new String[si];
+	}
+
+	private int i1=0;
+
+	public void add(String a){
+		while(s[i1]!=null){
+			i1++;
+		}
+		s[i1]=a;	
+	}
+
+	public void remove(int k) throws NoElementException
+	{
+		if((k>=0)&&(k<size)&&(s[k]!=null))
+		{			
+			s[k]=null;
+		}
+		else throw new NoElementException();
+
+	}
+
+	public String get(int i3) throws NoElementException{
+		if(s[i3]!=null) return s[i3];
+		else throw new NoElementException(); 		
+	}
+
+	public int size(){
+		if (s!=null) {
+			int i4=0;
+			while(s[i4]!=null){
+				i4++;
+			}
+			return i4;
+		}
+		else return 0;
+	}
+
+	public boolean isEmpty(){
+		if (s!=null){
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+}
+
+@SuppressWarnings("serial")
+class NoElementException extends Exception {
+
+	public NoElementException(){
+		System.out.println("No element.");
+	}
+	public NoElementException(String gripe){
+		super(gripe);
+	}
+
+}
