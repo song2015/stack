@@ -8,7 +8,12 @@ public class TestStringArray {
 		
 		System.out.println(sa.isEmpty());
 		
-		sa.remove(0);
+		try{
+			sa.remove(0);
+		}
+		catch(NoElementException e){
+			System.out.println("error");
+		}
 		System.out.println(sa.size());
 
 		sa.add("apple");
@@ -37,13 +42,14 @@ public class TestStringArray {
 class MyStringArray{
 	
 	private int size;
+	String[] s = null; 
 	
+			
 	public MyStringArray(int si){
 		size=si;
+		s = new String[si];
 	}
 	
-	String[] s=new String[size]; 
-
 	private int i1=0;
 
 	public void add(String a){
@@ -53,21 +59,18 @@ class MyStringArray{
 		s[i1]=a;	
 	}
 
-	public void remove(int i2) throws NoElementException
+	public void remove(int k) throws NoElementException
 	{
-		if(s[i2]!=null)
-		{
-			for(int i=i2;i<size;i++){
-				s[i2]=s[i2+1];
-			}
-			s[i2+1]=null;
+		if((k>=0)&&(k<size)&&(s[k]!=null))
+		{			
+				s[k]=null;
 		}
 		else throw new NoElementException();
 	}
 
-	public String get(int i3){
+	public String get(int i3) throws NoElementException{
 		if(s[i3]!=null) return s[i3];
-		else return "there is no element here"; 		
+		else throw new NoElementException(); 		
 	}
 
 	public int size(){
@@ -91,9 +94,12 @@ class MyStringArray{
 	}
 
 }
-public class NoElementException extends Exception {
 
-	public NoElementException(){}
+class NoElementException extends Exception {
+
+	public NoElementException(){
+		System.out.println("No element.");
+	}
 	public NoElementException(String gripe){
 		super(gripe);
 	}
