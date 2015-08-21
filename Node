@@ -1,28 +1,26 @@
+
 public class Node {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		MyNode nod = new MyNode("dog");
+		
 
 	}
+
+	
+	private static MyNode nod;
 	
 	public class MyNode{
 		public String str;
-		public Node next;
+		public MyNode no;
 		String[] s = null; 
+		public Node next;
 
 
-		public  MyNode(String a,Node n){
+		public  MyNode(String a){
 			str=a;
-			next=n;
 		}
 		
-		public Node getNod() {
-			return next;
-		}
-
-		public void setNod(Node nod) {
-			this.next = nod;
-		}
 		
 		public String getStr() {
 			return str;
@@ -31,16 +29,24 @@ public class Node {
 		public void setStr(String str) {
 			this.str = str;
 		}
-		
-		public void addNextNode(String a,Node n){
-			MyNode NewNode=new MyNode(String b,Node m);
-			b=a;
-			m=n;
+	
+		public void addNextNode(MyNode n){
+			no=n;
 		}
 		
+		public MyNode getNextNode(Node n){
+			if(no==null) return null;
+			else return no;
+		}
 		
+		public void removeNextNode(Node n) {
+			if(no==null) System.out.println("error");
+			else no=null;
+		}
 		
-		// setString removeNextNode  getNextNode printLink
+		public void printLink(){
+			System.out.println(str);
+		}
 		
 	}
 
