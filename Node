@@ -7,7 +7,11 @@ public class Node {
 		MyNode nod3 = new MyNode("pig");
 		
 		nod.addNextNode(nod2);
+		nod2.addNextNode(nod3);
+		
 		nod.printLink();
+		
+		System.out.println(nod.getNextNode().getNextNode().getStr());
 		
 	}
 }
@@ -19,6 +23,7 @@ public class Node {
 		public MyNode no;
 		String[] s = null; 
 		public Node next;
+		public MyNode currentNode;
 
 
 		public  MyNode(String a){
@@ -38,10 +43,18 @@ public class Node {
 			no=n;
 		}
 		
-		public MyNode getNextNode(Node n){
+		public MyNode getNextNode(){
 			if(no==null) return null;
 			else return no;
 		}
+		
+		
+		/*public MyNode next(){
+			MyNode next= currentNode.getNextNode();
+			currentNode = next;
+			return next;			
+		}*/
+	
 		
 		public void removeNextNode(Node n) {
 			if(no==null) System.out.println("error");
@@ -49,7 +62,7 @@ public class Node {
 		}
 		
 		public void printLink(){
-			System.out.println(str+" "+no.getStr());
+			System.out.println(str);
 		}
 		
 	}
