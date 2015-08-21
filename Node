@@ -47,7 +47,7 @@ public class Node {
 		}
 		
 		public void printLink(){
-			System.out.println(str);
+			System.out.println(str+" "+no.getStr());
 		}
 		
 	}
