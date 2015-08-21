@@ -4,6 +4,8 @@ public class Node {
 	public static void main(String[] args) {
 		MyNode nod = new MyNode("dog");
 		MyNode nod2 = new MyNode("cat");
+		MyNode nod3 = new MyNode("pig");
+		
 		nod.addNextNode(nod2);
 		nod.printLink();
 		
