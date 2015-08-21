@@ -7,7 +7,7 @@ public class Node {
 
 	}
 
-	
+}	
 	private static MyNode nod;
 	
 	public class MyNode{
@@ -50,4 +50,4 @@ public class Node {
 		
 	}
 
-}
+
