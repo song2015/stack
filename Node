@@ -10,6 +10,7 @@ public class Node {
 		nod2.addNextNode(nod3);
 		
 		nod.printLink();
+		nod3.printLink();
 		
 		System.out.println(nod.getNextNode().getNextNode().getStr());
 		
@@ -56,7 +57,7 @@ public class Node {
 		}*/
 	
 		
-		public void removeNextNode(Node n) {
+		public void removeNextNode() {
 			if(no==null) System.out.println("error");
 			else no=null;
 		}
