@@ -49,14 +49,6 @@ public class Node {
 			else return no;
 		}
 		
-		
-		/*public MyNode next(){
-			MyNode next= currentNode.getNextNode();
-			currentNode = next;
-			return next;			
-		}*/
-	
-		
 		public void removeNextNode() {
 			if(no==null) System.out.println("error");
 			else no=null;
