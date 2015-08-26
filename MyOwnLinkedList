@@ -1,0 +1,84 @@
+
+public class MyLinkedList {
+
+	public static void main(String[] args) {
+		MyOwnLinkedList l=new MyOwnLinkedList();
+		
+		try{
+			l.getHead();
+		}
+		catch(Exception e){
+			System.out.println("error");
+		}
+		
+		l.addLinkedList("dog");
+		l.addLinkedList("cat");
+		
+
+	}
+
+}
+
+class MyOwnLinkedList extends Node{
+
+	public MyNode node=new MyNode(null);
+
+	private MyNode head;
+	private MyNode tail;
+	private MyNode currentNode;
+	private int size;
+
+	public MyNode getHead() {
+		if(head.getStr()==null) 
+			throw new IndexOutOfBoundsException();
+		else
+			return head;
+	}
+
+	public boolean addLinkedList(String a){
+		if(head==null) {
+			head.setStr(a);;
+		}else
+		{
+			tail.setStr(a);
+			currentNode.setStr(a);	
+		}
+		return true;		    
+	}
+
+	public MyNode next(){
+		MyNode next= currentNode.getNextNode();
+		currentNode = next;
+		return next;
+	}
+
+	public int size() {
+		int count = 0;
+		MyNode p = head;
+		while (p.getStr() != null) {
+			count++;
+			p = p.getNextNode();
+		}
+		return count;
+	}
+
+	public String getFirst(){
+		return head.getStr();
+	}
+
+	public MyNode getLast(){
+		int count = 0;
+		MyNode p = head;
+		while (p.getStr() != null) {
+			count++;
+			p = p.getNextNode();
+		}
+		for(int i=1;i<=count;i++){
+			p = p.getNextNode();
+		}
+
+		return p;
+	}
+
+}
+
