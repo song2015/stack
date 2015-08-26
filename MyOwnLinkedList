@@ -3,6 +3,9 @@ public class MyLinkedList {
 
 	public static void main(String[] args) {
 		MyOwnLinkedList l=new MyOwnLinkedList();
+		MyNode no1 = new MyNode("apple");
+		MyNode no2 = new MyNode("banana");
+		MyNode no3 = new MyNode("orange");
 		
 		try{
 			l.getHead();
@@ -11,8 +14,8 @@ public class MyLinkedList {
 			System.out.println("error");
 		}
 		
-		l.addLinkedList("dog");
-		l.addLinkedList("cat");
+		l.addLinkedList(no1);
+		l.addLinkedList(no2);
 		
 
 	}
@@ -35,14 +38,23 @@ class MyOwnLinkedList extends Node{
 			return head;
 	}
 
-	public boolean addLinkedList(String a){
+	public boolean addLinkedList(MyNode a){
 		if(head==null) {
-			head.setStr(a);;
+			head=a;
 		}else
 		{
-			tail.setStr(a);
-			currentNode.setStr(a);	
-		}
+			tail.addNextNode(a);	
+		}	
+		return true;		    
+	}
+	
+	public boolean removeLastNode(){
+		if(head==null) 
+			throw new IndexOutOfBoundsException();
+		else
+		{
+			tail=null;	
+		}	
 		return true;		    
 	}
 
@@ -79,6 +91,7 @@ class MyOwnLinkedList extends Node{
 
 		return p;
 	}
+
 
 }
 
