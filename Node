@@ -2,17 +2,16 @@
 public class Node {
 
 	public static void main(String[] args) {
-		MyNode nod = new MyNode("dog");
-		nod.printLink();
-		
+		MyNode nod = new MyNode("dog");		
 		MyNode nod2 = new MyNode("cat");
 		MyNode nod3 = new MyNode("pig");
 		
+		nod.printLink();
+		
 		nod.addNextNode(nod2);
 		nod2.addNextNode(nod3);
-		
 	
-		nod3.printLink();
+	    nod3.printLink();
 		
 		System.out.println(nod.getNextNode().getNextNode().getStr());
 		
@@ -20,13 +19,9 @@ public class Node {
 }
 		
   class MyNode{
-		public String str;
-		public MyNode no;
-		String[] s = null; 
-		public Node next;
-		public MyNode currentNode;
-
-
+		public String str; 
+		public MyNode next=null;
+		
 		public  MyNode(String a){
 			str=a;
 		}
@@ -41,17 +36,17 @@ public class Node {
 		}
 	
 		public void addNextNode(MyNode n){
-			no=n;
+			next=n;
 		}
 		
 		public MyNode getNextNode(){
-			if(no==null) return null;
-			else return no;
+			if(next==null) return null;
+			else return next;
 		}
 		
 		public void removeNextNode() {
-			if(no==null) System.out.println("error");
-			else no=null;
+			if(next==null) System.out.println("error");
+			else next=null;
 		}
 		
 		public void printLink(){
