@@ -3,10 +3,7 @@ public class MyLinkedList {
 
 	public static void main(String[] args) {
 		MyOwnLinkedList l=new MyOwnLinkedList();
-		MyNode no1 = new MyNode("apple");
-		MyNode no2 = new MyNode("banana");
-		MyNode no3 = new MyNode("orange");
-
+		
 		try{
 			l.getHead();
 		}
@@ -14,16 +11,16 @@ public class MyLinkedList {
 			System.out.println("error");
 		}
 
-		l.addLinkedList(no1);
-		l.addLinkedList(no2);
-		l.addLinkedList(no3);
+		l.addLinkedList("apple");
+		l.addLinkedList("banana");
+		l.addLinkedList("orange");
 
-		System.out.println(l.getHead().getStr());
-		System.out.println(l.getLast().getStr());
+		System.out.println(l.getHead());
+		System.out.println(l.getLast());
 
 		l.removeLastNode();
 
-		System.out.println(l.getLast().getStr());
+		System.out.println(l.getLast());
 		
 		System.out.println(l.size());
 
@@ -31,7 +28,7 @@ public class MyLinkedList {
 
 }
 
-class MyOwnLinkedList extends Node{
+class MyOwnLinkedList{
 
 	public MyNode node=new MyNode(null);
 
@@ -39,23 +36,25 @@ class MyOwnLinkedList extends Node{
 	private MyNode tail;
 	private MyNode currentNode;
 
-	public MyNode getHead() {
+	public String getHead() {
 		if(head.getStr()==null) 
 			throw new IndexOutOfBoundsException();
 		else
-			return head;
+			return head.getStr();
 	}
 
-	public boolean addLinkedList(MyNode a){
+	public boolean addLinkedList(String a){
+		MyNode no = new MyNode(a);
+		
 		if(head==null) {
-			head=a;
+			head=no;
 			currentNode=head;
 		}else
 		{
 			tail=currentNode;
-			tail.addNextNode(a);
-			currentNode=a;
-			tail=a;
+			tail.addNextNode(no);
+			currentNode=no;
+			tail=no;
 		}	
 		return true;		    
 	}
@@ -80,16 +79,16 @@ class MyOwnLinkedList extends Node{
 		return true;		    
 	}
 
-	public MyNode next(){
+	public String next(){
 		MyNode next= currentNode.getNextNode();
 		currentNode = next;
-		return next;
+		return next.getStr();
 	}
 
 	public int size() {
 		int count =0;
 		MyNode p = head;
-		while (p!= null) {
+		while (p!= null) {//p为空的时候不能用p.getStr();
 			count++;
 			p = p.getNextNode();
 		}
@@ -100,8 +99,8 @@ class MyOwnLinkedList extends Node{
 		return head.getStr();
 	}
 
-	public MyNode getLast(){
-		return tail;
+	public String getLast(){
+		return tail.getStr();
 	}
 
 
