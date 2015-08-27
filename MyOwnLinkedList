@@ -6,17 +6,26 @@ public class MyLinkedList {
 		MyNode no1 = new MyNode("apple");
 		MyNode no2 = new MyNode("banana");
 		MyNode no3 = new MyNode("orange");
-		
+
 		try{
 			l.getHead();
 		}
 		catch(Exception e){
 			System.out.println("error");
 		}
-		
+
 		l.addLinkedList(no1);
 		l.addLinkedList(no2);
+		l.addLinkedList(no3);
+
+		System.out.println(l.getHead().getStr());
+		System.out.println(l.getLast().getStr());
+
+		l.removeLastNode();
+
+		System.out.println(l.getLast().getStr());
 		
+		System.out.println(l.size());
 
 	}
 
@@ -29,7 +38,6 @@ class MyOwnLinkedList extends Node{
 	private MyNode head;
 	private MyNode tail;
 	private MyNode currentNode;
-	private int size;
 
 	public MyNode getHead() {
 		if(head.getStr()==null) 
@@ -41,19 +49,33 @@ class MyOwnLinkedList extends Node{
 	public boolean addLinkedList(MyNode a){
 		if(head==null) {
 			head=a;
+			currentNode=head;
 		}else
 		{
-			tail.addNextNode(a);	
+			tail=currentNode;
+			tail.addNextNode(a);
+			currentNode=a;
+			tail=a;
 		}	
 		return true;		    
 	}
-	
+
 	public boolean removeLastNode(){
 		if(head==null) 
 			throw new IndexOutOfBoundsException();
 		else
 		{
-			tail=null;	
+			MyNode pre=head;
+			MyNode curr = head.getNextNode();
+
+			while(curr!= tail){
+				curr = curr.next;
+				pre = pre.next;
+			}
+
+			pre.next = curr.next;
+			curr.next = null;
+			tail=pre;
 		}	
 		return true;		    
 	}
@@ -65,9 +87,9 @@ class MyOwnLinkedList extends Node{
 	}
 
 	public int size() {
-		int count = 0;
+		int count =0;
 		MyNode p = head;
-		while (p.getStr() != null) {
+		while (p!= null) {
 			count++;
 			p = p.getNextNode();
 		}
@@ -79,17 +101,7 @@ class MyOwnLinkedList extends Node{
 	}
 
 	public MyNode getLast(){
-		int count = 0;
-		MyNode p = head;
-		while (p.getStr() != null) {
-			count++;
-			p = p.getNextNode();
-		}
-		for(int i=1;i<=count;i++){
-			p = p.getNextNode();
-		}
-
-		return p;
+		return tail;
 	}
 
 
