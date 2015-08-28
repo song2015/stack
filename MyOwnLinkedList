@@ -62,6 +62,7 @@ class MyOwnLinkedList{
 		if(head==null) {
 			head=no;
 			currentNode=head;
+			tail=head;
 		}else
 		{
 			tail=currentNode;
@@ -79,15 +80,19 @@ class MyOwnLinkedList{
 		{
 			MyNode pre=head;
 			MyNode curr = head.getNextNode();
-
-			while(curr!= tail){
-				curr = curr.next;
-				pre = pre.next;
+			
+			if(head==tail){
+				head=null;
+				tail=null;
+			}else{
+				while(curr!= tail){
+					curr = curr.next;
+					pre = pre.next;
+				}
+				pre.next = curr.next;
+				curr.next = null;
+				tail=pre;
 			}
-
-			pre.next = curr.next;
-			curr.next = null;
-			tail=pre;
 		}	
 		return true;		    
 	}
@@ -95,7 +100,7 @@ class MyOwnLinkedList{
 	public int size() {
 		int count =0;
 		MyNode p = head;
-		while (p!= null) {
+		while (p!= null) {//p为空的时候不能用p.getStr();
 			count++;
 			p = p.getNextNode();
 		}
