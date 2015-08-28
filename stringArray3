@@ -96,19 +96,17 @@ class MyStringArray{
 	public void bubbleSort() { 
 		String tempt; 
 		for(int i=0; i<size-1; i++){ 
-			
 			if(s[i]!=null){
 				for(int j=i+1; j<size; j++){ 
 					if(s[j]!=null){
-					if(!s[i].equals(s[j])){
+					if(s[i].compareTo(s[j])<0){
 						tempt=s[i]; 
 						s[i]=s[j]; 
 						s[j]=tempt; 
 						} 
 					}
 				}
-			}
-			
+			}	
 		}		
 		for(int i=0;i<size;i++)  
 			System.out.println(s[i]);  
