@@ -9,13 +9,24 @@ public class linkedlistStack2 {
 	        s.push("c");
 	        s.push("d");
 	   
-	        System.out.println(s.peek());
-	        System.out.println(s.pop());    
-	    }  
+	        try{
+	        	System.out.println(s.peek());
+	        	System.out.println(s.pop());
+		        System.out.println(s.peek());
+		        System.out.println(s.pop());
+		        System.out.println(s.peek());
+		        System.out.println(s.pop());
+	        }
+	        catch(Exception e){
+				System.out.println("noHead");
+			}
+	        
+	    }
     }	
    
 class Sta{
 		 MyOwnLinkedList list=new MyOwnLinkedList();
+		 
 		 public void push(String x)
 		 {
 			 list.addLinkedList(x);
@@ -24,16 +35,20 @@ class Sta{
 		 public String pop()       
 		 {
 			 if(list.size()!=0){
-				 return list.getLast();
+				 String a=list.getLast();
+				 list.removeLastNode();
+				 return a;
 				 }
-			 else return null; 
+			 else throw new IndexOutOfBoundsException(); 
 		 }
 		 public String peek()
 		 {
 			 if(list.size()!=0){
-				 return  list.getLast();
+				 String a=list.getLast();
+				 list.removeLastNode();
+				 return a;
 				 }
-			 else return null;  
+			 else throw new IndexOutOfBoundsException(); 
 		 }
 		 public boolean isEmpty()
 		 {
