@@ -15,13 +15,14 @@ public class TestStringArray {
 		catch(NoElementException e){
 			System.out.println("error");
 		}
+		
 		System.out.println(sa.size());
 
 		sa.add("apple");
 		sa.add("banana");
 		sa.add("peach");
 
-	//	sa.ranking();
+		sa.bubbleSort();
 
 		for(int i=0;i<sa.size();i++){
 			System.out.println(sa.get(i));
@@ -31,7 +32,13 @@ public class TestStringArray {
 
 		System.out.println(sa.isEmpty());
 
-		sa.remove(1);
+		try{
+			sa.remove(1);
+		}
+		catch(NoElementException e){
+			System.out.println("error");
+		}
+		
 		for(int i=0;i<sa.size();i++){
 			System.out.println(sa.get(i));
 		}
@@ -52,11 +59,10 @@ public class TestStringArray {
 }
 
 
-
 class MyStringArray{
 
 	private int size;
-	String[] s = null; 
+	private String[] s; 
 
 
 	public MyStringArray(int si){
@@ -69,40 +75,42 @@ class MyStringArray{
 		s = new String[size];
 	}
 
-	private int i1=0;
 
 	public void add(String a){
+		int i1=0;
 		while(s[i1]!=null){
 			i1++;
 		}
-		if(i1<100){
+		if(i1<size){
 			s[i1]=a;
 		}else{
 			size*=2;
-			s=new String[size];
+			s[i1]=a;
 		}
 
 	}
-	/*public void ranking() { 
-		s = new String[size];
-		String temp; 
+	
+	public void bubbleSort() { 
+		String tempt; 
 		for(int i=0; i<size-1; i++){ 
+			
 			if(s[i]!=null){
 				for(int j=i+1; j<size; j++){ 
+					if(s[j]!=null){
 					if(!s[i].equals(s[j])){
-
-						temp=s[i]; 
+						tempt=s[i]; 
 						s[i]=s[j]; 
-						s[j]=temp; 
-					} 
+						s[j]=tempt; 
+						} 
+					}
 				}
-			}	
+			}
+			
 		}		
 		for(int i=0;i<size;i++)  
 			System.out.println(s[i]);  
-	}*/
+	}
 	
-
 
 	public void remove(int k) throws NoElementException
 	{
@@ -130,12 +138,7 @@ class MyStringArray{
 	}
 
 	public boolean isEmpty(){
-		if (s!=null){
-			return false;
-		}
-		else {
-			return true;
-		}
+		return s==null;
 	}
 
 }
@@ -145,9 +148,6 @@ class NoElementException extends Exception {
 
 	public NoElementException(){
 		System.out.println("No element.");
-	}
-	public NoElementException(String gripe){
-		super(gripe);
 	}
 
 }
