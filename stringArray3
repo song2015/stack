@@ -100,6 +100,7 @@ class MyStringArray{
 				for(int j=i+1; j<size; j++){ 
 					if(s[j]!=null){
 					if(s[i].compareTo(s[j])<0){
+					//equals只比较是不是相等，compareTo比较大小
 						tempt=s[i]; 
 						s[i]=s[j]; 
 						s[j]=tempt; 
