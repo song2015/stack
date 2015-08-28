@@ -8,7 +8,7 @@ public class MyLinkedList {
 			l.getHead();
 		}
 		catch(Exception e){
-			System.out.println("error");
+			System.out.println("noHead");
 		}
 
 		l.addLinkedList("apple");
@@ -16,6 +16,7 @@ public class MyLinkedList {
 		l.addLinkedList("orange");
 
 		System.out.println(l.getHead());
+	
 		System.out.println(l.getLast());
 
 		l.removeLastNode();
@@ -23,14 +24,26 @@ public class MyLinkedList {
 		System.out.println(l.getLast());
 		
 		System.out.println(l.size());
+		
+		try{
+			l.removeLastNode();
+		}
+		catch(Exception e){
+			System.out.println("noElement");
+		}
+		
+		try{
+			l.removeLastNode();
+		}
+		catch(Exception e){
+			System.out.println("noElement");
+		}
 
 	}
 
 }
 
 class MyOwnLinkedList{
-
-	public MyNode node=new MyNode(null);
 
 	private MyNode head;
 	private MyNode tail;
@@ -79,16 +92,10 @@ class MyOwnLinkedList{
 		return true;		    
 	}
 
-	public String next(){
-		MyNode next= currentNode.getNextNode();
-		currentNode = next;
-		return next.getStr();
-	}
-
 	public int size() {
 		int count =0;
 		MyNode p = head;
-		while (p!= null) {//p为空的时候不能用p.getStr();
+		while (p!= null) {
 			count++;
 			p = p.getNextNode();
 		}
