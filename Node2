@@ -1,0 +1,58 @@
+
+public class Node {
+
+	public static void main(String[] args) {
+		MyNode nod = new MyNode("dog");		
+		MyNode nod2 = new MyNode("cat");
+		MyNode nod3 = new MyNode("pig");
+
+		nod.printLink();
+
+		nod.addNextNode(nod2);
+		nod2.addNextNode(nod3);
+
+		nod3.printLink();
+
+		System.out.println(nod.getNextNode().getNextNode().getStr());
+
+	}
+}
+
+class MyNode{
+	public String str; 
+	public MyNode next=null;
+
+	public  MyNode(String a){
+		str=a;
+	}
+
+
+	public String getStr() {
+		return str;
+	}
+
+	public void setStr(String str) {
+		this.str = str;
+	}
+
+	public void addNextNode(MyNode n){
+		next=n;
+	}
+
+	public MyNode getNextNode(){
+		if(next==null) return null;
+		else return next;
+	}
+
+	public void removeNextNode() {
+		if(next==null) System.out.println("error");
+		else next=null;
+	}
+
+	public void printLink(){
+		System.out.println(str);
+	}
+
+}
+
+
