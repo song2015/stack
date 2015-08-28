@@ -18,11 +18,12 @@ public class TestStringArray {
 		
 		System.out.println(sa.size());
 
-		sa.add("apple");
-		sa.add("banana");
-		sa.add("peach");
-		sa.add("strawberry");
-		sa.add("cherry");
+		
+		sa.add("b");
+		sa.add("p");
+		sa.add("a");
+		sa.add("d");
+		sa.add("c");
 		
 		sa.bubbleSort();
 
