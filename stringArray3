@@ -21,7 +21,9 @@ public class TestStringArray {
 		sa.add("apple");
 		sa.add("banana");
 		sa.add("peach");
-
+		sa.add("strawberry");
+		sa.add("cherry");
+		
 		sa.bubbleSort();
 
 		for(int i=0;i<sa.size();i++){
@@ -71,7 +73,7 @@ class MyStringArray{
 	}
 
 	public MyStringArray(){
-		size=100;
+		size=2;
 		s = new String[size];
 	}
 
