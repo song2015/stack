@@ -1,0 +1,44 @@
+
+public class linkedlistStack2 {
+    public static void main(String[] args)
+	    {
+	        Sta s = new Sta();
+	        
+	        s.push("a");
+	        s.push("b");
+	        s.push("c");
+	        s.push("d");
+	   
+	        System.out.println(s.peek());
+	        System.out.println(s.pop());    
+	    }  
+    }	
+   
+class Sta{
+		 MyOwnLinkedList list=new MyOwnLinkedList();
+		 public void push(String x)
+		 {
+			 list.addLinkedList(x);
+		 }
+			
+		 public String pop()       
+		 {
+			 if(list.size()!=0){
+				 return list.getLast();
+				 }
+			 else return null; 
+		 }
+		 public String peek()
+		 {
+			 if(list.size()!=0){
+				 return  list.getLast();
+				 }
+			 else return null;  
+		 }
+		 public boolean isEmpty()
+		 {
+			 return list.size()==0;
+		 }
+    }
+
+
