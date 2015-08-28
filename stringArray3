@@ -5,7 +5,7 @@ public class TestStringArray {
 
 	public static void main(String[] args) throws NoElementException {
 
-		MyStringArray sa=new MyStringArray(100);
+		MyStringArray sa=new MyStringArray(2);
 
 		System.out.println(sa.isEmpty());
 
@@ -17,11 +17,17 @@ public class TestStringArray {
 		}
 		
 		System.out.println(sa.size());
-
+		System.out.println(sa.getSize());
 		
 		sa.add("b");
 		sa.add("p");
+		System.out.println(sa.size());
+		System.out.println(sa.getSize());
+		
 		sa.add("a");
+		System.out.println(sa.size());
+		System.out.println(sa.getSize());
+		
 		sa.add("d");
 		sa.add("c");
 		
@@ -32,6 +38,7 @@ public class TestStringArray {
 		}
 
 		System.out.println(sa.size());
+		System.out.println(sa.getSize());
 
 		System.out.println(sa.isEmpty());
 
@@ -66,6 +73,10 @@ class MyStringArray{
 
 	private int size;
 	private String[] s; 
+	
+	public int getSize(){
+		return size;
+	}
 
 
 	public MyStringArray(int si){
@@ -75,20 +86,27 @@ class MyStringArray{
 
 	public MyStringArray(){
 		size=2;
-		s = new String[size];
+		s = new String[size];//数组一旦初始化，就没法改变长度
 	}
 
 
 	public void add(String a){
-		int i1=0;
-		while(s[i1]!=null){
-			i1++;
-		}
+		
+		int i1=this.size();
 		if(i1<size){
 			s[i1]=a;
 		}else{
 			size*=2;
-			s[i1]=a;
+			String[] s1;
+			s1=new String[size];
+			System.arraycopy(s, 0, s1,0, s.length);
+			
+			/*for(int i=0;i<size/2;i++){
+				s1[i]=s[i];
+			}*/
+			
+			s1[i1]=a;
+			s=s1;
 		}
 
 	}
@@ -100,7 +118,6 @@ class MyStringArray{
 				for(int j=i+1; j<size; j++){ 
 					if(s[j]!=null){
 					if(s[i].compareTo(s[j])<0){
-					//equals只比较是不是相等，compareTo比较大小
 						tempt=s[i]; 
 						s[i]=s[j]; 
 						s[j]=tempt; 
@@ -132,6 +149,9 @@ class MyStringArray{
 		if (s!=null) {
 			int i4=0;
 			while(s[i4]!=null){
+				if(i4==s.length-1) {
+					return s.length;
+				}
 				i4++;
 			}
 			return i4;
