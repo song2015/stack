@@ -30,7 +30,7 @@ public class TestStringArray {
 
 		sa.add("d");
 		sa.add("c");
-		
+
 		sa.mergeSort();
 
 		//sa.bubbleSort();
@@ -91,7 +91,7 @@ class MyStringArray{
 		if(size<2) return;
 		mergesort(0,this.size()-1);//用size会出现溢出的问题，因为数组可能不是满的，存在null
 	}
-	
+
 	private void mergesort(int low,int high){	
 		if(low<high){
 			int middle=low+(high-low)/2;
@@ -101,8 +101,8 @@ class MyStringArray{
 		}		
 	}
 
-private void merge(int low,int middle,int high){
-	
+	private void merge(int low,int middle,int high){
+
 		String[] temporary=new String[size];
 		int i=low;
 		int j=middle+1;
@@ -110,7 +110,7 @@ private void merge(int low,int middle,int high){
 
 		while(i<=middle && j<=high){
 			if( s[i].compareTo(s[j])<0 || s[i].compareTo(s[j])==0){
-				
+
 				temporary[k]=s[i];
 				i++;
 				k++;
@@ -119,7 +119,7 @@ private void merge(int low,int middle,int high){
 				j++;
 				k++;
 			}
-			
+
 		}
 
 		while(i<=middle){
@@ -133,10 +133,10 @@ private void merge(int low,int middle,int high){
 			j++;
 			k++;
 		}	
-		
+
 		for(i=low,k=0;i<=high;i++,k++){
-				s[i]=temporary[k];
-			}
+			s[i]=temporary[k];
+		}
 	}		
 
 
