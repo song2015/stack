@@ -15,23 +15,25 @@ public class TestStringArray {
 		catch(NoElementException e){
 			System.out.println("error");
 		}
-		
+
 		System.out.println(sa.size());
 		System.out.println(sa.getSize());
-		
+
 		sa.add("b");
 		sa.add("p");
 		System.out.println(sa.size());
 		System.out.println(sa.getSize());
-		
+
 		sa.add("a");
 		System.out.println(sa.size());
 		System.out.println(sa.getSize());
-		
+
 		sa.add("d");
 		sa.add("c");
 		
-		sa.bubbleSort();
+		sa.mergeSort();
+
+		//sa.bubbleSort();
 
 		for(int i=0;i<sa.size();i++){
 			System.out.println(sa.get(i));
@@ -48,7 +50,7 @@ public class TestStringArray {
 		catch(NoElementException e){
 			System.out.println("error");
 		}
-		
+
 		for(int i=0;i<sa.size();i++){
 			System.out.println(sa.get(i));
 		}
@@ -72,12 +74,8 @@ public class TestStringArray {
 class MyStringArray{
 
 	private int size;
-	private String[] s; 
-	
-	public int getSize(){
-		return size;
-	}
-
+	private String[] s;
+	String[] temp;
 
 	public MyStringArray(int si){
 		size=si;
@@ -89,9 +87,56 @@ class MyStringArray{
 		s = new String[size];//数组一旦初始化，就没法改变长度
 	}
 
+	public void mergeSort(){
+		if(size<2) return;
+		mergesort(0,s.size());
+	}
+
+	private void mergesort(int low,int high){	
+		if(low<high){
+			int middle=low+(high-low)/2;
+			mergesort(low,middle);
+			mergesort(middle+1,high);
+			merge(low,middle,high);
+		}		
+	}
+
+	private void merge(int low,int middle,int high){
+		temp=s;
+		for(int i=low;i<=high;i++){
+			temp[i]=s[i];
+		}
+		int i=low;
+		int j=middle+1;
+		int k=low;
+
+		while(i<=middle && j<=high){
+			if(temp[i].compareTo(temp[j])<0){
+				s[k]=temp[i];
+				i++;
+				k++;
+			}else{
+				s[k]=temp[j];
+				j++;
+				k++;
+			}
+		}
+
+		while(i<=middle){
+			s[k]=temp[i];
+			i++;
+			k++;
+		}
+
+		while(j<=high){
+			s[k]=temp[j];
+			j++;
+			k++;
+		}	
+	}		
 
 	public void add(String a){
-		
+
 		int i1=this.size();
 		if(i1<size){
 			s[i1]=a;
@@ -100,27 +145,31 @@ class MyStringArray{
 			String[] s1;
 			s1=new String[size];
 			System.arraycopy(s, 0, s1,0, s.length);
-			
+
 			/*for(int i=0;i<size/2;i++){
 				s1[i]=s[i];
 			}*/
-			
+
 			s1[i1]=a;
 			s=s1;
 		}
 
 	}
-	
+
+	public int getSize(){
+		return size;
+	}
+
 	public void bubbleSort() { 
 		String tempt; 
 		for(int i=0; i<size-1; i++){ 
 			if(s[i]!=null){
 				for(int j=i+1; j<size; j++){ 
 					if(s[j]!=null){
-					if(s[i].compareTo(s[j])<0){
-						tempt=s[i]; 
-						s[i]=s[j]; 
-						s[j]=tempt; 
+						if(s[i].compareTo(s[j])<0){
+							tempt=s[i]; 
+							s[i]=s[j]; 
+							s[j]=tempt; 
 						} 
 					}
 				}
@@ -129,7 +178,7 @@ class MyStringArray{
 		for(int i=0;i<size;i++)  
 			System.out.println(s[i]);  
 	}
-	
+
 
 	public void remove(int k) throws NoElementException
 	{
