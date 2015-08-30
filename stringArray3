@@ -19,8 +19,8 @@ public class TestStringArray {
 		System.out.println(sa.size());
 		System.out.println(sa.getSize());
 
-		sa.add("b");
-		sa.add("p");
+		sa.add("f");
+		sa.add("e");
 		System.out.println(sa.size());
 		System.out.println(sa.getSize());
 
@@ -91,7 +91,7 @@ class MyStringArray{
 		if(size<2) return;
 		mergesort(0,this.size()-1);//用size会出现溢出的问题，因为数组可能不是满的，存在null
 	}
-
+	
 	private void mergesort(int low,int high){	
 		if(low<high){
 			int middle=low+(high-low)/2;
@@ -101,7 +101,46 @@ class MyStringArray{
 		}		
 	}
 
-	private void merge(int low,int middle,int high){
+private void merge(int low,int middle,int high){
+	
+		String[] temporary=new String[size];
+		int i=low;
+		int j=middle+1;
+		int k=0;
+
+		while(i<=middle && j<=high){
+			if( s[i].compareTo(s[j])<0 || s[i].compareTo(s[j])==0){
+				
+				temporary[k]=s[i];
+				i++;
+				k++;
+			}else{	
+				temporary[k]=s[j];
+				j++;
+				k++;
+			}
+			
+		}
+
+		while(i<=middle){
+			temporary[k]=s[i];
+			i++;
+			k++;
+		}
+
+		while(j<=high){
+			temporary[k++]=s[j++];
+			j++;
+			k++;
+		}	
+		
+		for(i=low,k=0;i<=high;i++,k++){
+				s[i]=temporary[k];
+			}
+	}		
+
+
+	/*	private void merge(int low,int middle,int high){
 		temp=s;
 		for(int i=low;i<=high;i++){
 			temp[i]=s[i];
@@ -111,7 +150,7 @@ class MyStringArray{
 		int k=low;
 
 		while(i<=middle && j<=high){
-			if(temp[i].compareTo(temp[j])<0){
+			if(temp[i].compareTo(temp[j])<0 || temp[i].compareTo(temp[j])==0){
 				s[k]=temp[i];
 				i++;
 				k++;
@@ -133,7 +172,7 @@ class MyStringArray{
 			j++;
 			k++;
 		}	
-	}		
+	}		*/
 
 	public void add(String a){
 
