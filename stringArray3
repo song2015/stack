@@ -89,7 +89,7 @@ class MyStringArray{
 
 	public void mergeSort(){
 		if(size<2) return;
-		mergesort(0,s.length－1);
+		mergesort(0,this.size()-1);//用size会出现溢出的问题，因为数组可能不是满的，存在null
 	}
 
 	private void mergesort(int low,int high){	
