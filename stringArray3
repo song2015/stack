@@ -89,7 +89,7 @@ class MyStringArray{
 
 	public void mergeSort(){
 		if(size<2) return;
-		mergesort(0,s.size());
+		mergesort(0,s.length－1);
 	}
 
 	private void mergesort(int low,int high){	
