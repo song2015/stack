@@ -129,7 +129,7 @@ class MyStringArray{
 		}
 
 		while(j<=high){
-			temporary[k++]=s[j++];
+			temporary[k]=s[j];
 			j++;
 			k++;
 		}	
