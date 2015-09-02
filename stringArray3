@@ -33,6 +33,10 @@ public class TestStringArray {
 
 		sa.mergeSort();
 
+		sa.getRanking("a");
+		sa.getRanking("c");
+		sa.getRanking("M");
+
 		//sa.bubbleSort();
 
 		for(int i=0;i<sa.size();i++){
@@ -67,6 +71,8 @@ public class TestStringArray {
 			System.out.println("error");
 		}
 
+
+
 	}
 }
 
@@ -75,7 +81,7 @@ class MyStringArray{
 
 	private int size;
 	private String[] s;
-	String[] temp;
+	//	String[] temp;
 
 	public MyStringArray(int si){
 		size=si;
@@ -86,6 +92,25 @@ class MyStringArray{
 		size=2;
 		s = new String[size];//数组一旦初始化，就没法改变长度
 	}
+
+	public void getRanking(String element){
+		if (s!=null){
+			int i=0;
+			while(element!=s[i]&& i<this.size()){
+				i++;
+			}
+			if(i==this.size()&&element!=s[i]){
+				System.out.println("do not contain");
+			} 
+			else 
+				System.out.println(i);
+
+		}else 
+			System.out.println("the String is null");
+
+
+	}
+
 
 	public void mergeSort(){
 		if(size<2) return;
@@ -129,7 +154,7 @@ class MyStringArray{
 		}
 
 		while(j<=high){
-			temporary[k]=s[j];
+			temporary[k++]=s[j++];
 			j++;
 			k++;
 		}	
