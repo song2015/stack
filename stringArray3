@@ -81,7 +81,6 @@ class MyStringArray{
 
 	private int size;
 	private String[] s;
-	//	String[] temp;
 
 	public MyStringArray(int si){
 		size=si;
