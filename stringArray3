@@ -1,84 +1,6 @@
 package queue;
 
-
-public class TestStringArray {
-
-	public static void main(String[] args) throws NoElementException {
-
-		MyStringArray sa=new MyStringArray(2);
-
-		System.out.println(sa.isEmpty());
-
-		try{
-			sa.remove(0);
-		}
-		catch(NoElementException e){
-			System.out.println("error");
-		}
-
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
-
-		sa.add("f");
-		sa.add("e");
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
-
-		sa.add("a");
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
-
-		sa.add("d");
-		sa.add("c");
-
-		sa.mergeSort();
-
-		sa.getRanking("a");
-		sa.getRanking("c");
-		sa.getRanking("M");
-
-		//sa.bubbleSort();
-
-		for(int i=0;i<sa.size();i++){
-			System.out.println(sa.get(i));
-		}
-
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
-
-		System.out.println(sa.isEmpty());
-
-		try{
-			sa.remove(1);
-		}
-		catch(NoElementException e){
-			System.out.println("error");
-		}
-
-		for(int i=0;i<sa.size();i++){
-			System.out.println(sa.get(i));
-		}
-
-		try{
-			System.out.println(sa.get(1));
-		}catch(NoElementException e){
-			System.out.println("error");
-		}
-
-		try{
-			System.out.println(sa.get(3));
-		}catch(NoElementException e){
-			System.out.println("error");
-		}
-
-
-
-	}
-}
-
-
-class MyStringArray{
-
+public class MyStringArray {
 	private int size;
 	private String[] s;
 
@@ -93,6 +15,8 @@ class MyStringArray{
 	}
 
 	public void getRanking(String element){
+		this.mergeSort();
+		
 		if (s!=null){
 			int i=0;
 			while(element!=s[i]&& i<this.size()){
