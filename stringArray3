@@ -13,27 +13,27 @@ public class MyStringArray {
 		size=2;
 		s = new String[size];//数组一旦初始化，就没法改变长度
 	}
-
+	
 	public void getRanking(String element){
-		this.mergeSort();
-		
-		if (s!=null){
-			int i=0;
-			while(element!=s[i]&& i<this.size()){
-				i++;
-			}
-			if(i==this.size()&&element!=s[i]){
-				System.out.println("do not contain");
-			} 
-			else 
-				System.out.println(i);
-
-		}else 
-			System.out.println("the String is null");
-
+		search(s,element);
 
 	}
-
+	
+	public void search(String[] l,String str){
+		int low=0;
+		int high=l.length-1;
+		while(low<=high){
+			int mid=(low+high)/2;
+			if(str==s[mid]){
+				System.out.println(mid);
+			}else if(str.compareTo(s[mid])<0){
+				high=mid-1;
+			}else if(str.compareTo(s[mid])>0){
+				low=mid+1;
+			}
+		}
+	   System.out.println("not found");
+	}
 
 	public void mergeSort(){
 		if(size<2) return;
