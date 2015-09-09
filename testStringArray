@@ -16,26 +16,30 @@ public class TestStringArray {
 			System.out.println("error");
 		}
 
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
-
-		sa.add("b");
-		sa.add("e");
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
+		//System.out.println(sa.size());
+		//System.out.println(sa.getSize());
 
 		sa.add("a");
-		System.out.println(sa.size());
-		System.out.println(sa.getSize());
+		sa.add("b");
+		//System.out.println(sa.size());
+		//System.out.println(sa.getSize());
 
 		sa.add("d");
+		sa.add("e");
 		sa.add("c");
+		//System.out.println(sa.size());
+		//System.out.println(sa.getSize());
+
+
 
 		//sa.mergeSort();
+		System.out.println("--------------------");
 
-		sa.getRanking("a");
 		sa.getRanking("c");
-		sa.getRanking("M");
+		sa.getRanking("h");
+
+		System.out.println("--------------------");
+
 
 		//sa.bubbleSort();
 
