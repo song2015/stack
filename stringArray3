@@ -13,47 +13,38 @@ public class MyStringArray {
 		size=2;
 		s = new String[size];//数组一旦初始化，就没法改变长度
 	}
-	
-       public void getRanking(String element){
-		String tempt; 
-		for(int i=0; i<size-1; i++){ 
-			if(s[i]!=null){
-				for(int j=i+1; j<size; j++){ 
-					if(s[j]!=null){
-						if(s[i].compareTo(s[j])<0){
-							tempt=s[i]; 
-							s[i]=s[j]; 
-							s[j]=tempt; 
-						} 
-					}
-				}
-			}	
-		}		
 
-		search(s,element);
-
+	public void getRanking(String element){
+		this.bubbleSort();
+		System.out.println(search(s,element));	
 	}
-	
-	public void search(String[] l,String str){
+
+	public int search(String[] l,String str){
 		int low=0;
 		int high=this.size()-1;
+		int index=0;
+		boolean flag=false;
 		while(low<=high){
 			int mid=(low+high)/2;
 			if(str==s[mid]){
-				System.out.println(mid);
-				return;
-			
-			}else if(str.compareTo(s[mid])<0){
-				high=mid-1;		
-				
+				flag=true;
+				index=mid;
+				break;
+			} else if(str.compareTo(s[mid])<0){
+				high=mid-1;
+				index=high;
+				if(mid==0)
+					index=mid;	
 			}else if(str.compareTo(s[mid])>0){
 				low=mid+1;
-				
+				index=low;
+
 			}
-			System.out.println("not found");
 		}
-	   
+		if(flag==false) System.out.println("not exist，if insert,the index should be");
+		return index;   
 	}
+
 
 	public void mergeSort(){
 		if(size<2) return;
