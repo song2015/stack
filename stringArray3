@@ -15,8 +15,9 @@ public class MyStringArray {
 	}
 
 	public void getRanking(String element){
-		this.bubbleSort();
-		System.out.println(search(s,element));	
+		String[] m;
+		m=this.bubbleSort();
+		System.out.println(search(m,element));	
 	}
 
 	public int search(String[] l,String str){
@@ -26,9 +27,17 @@ public class MyStringArray {
 		boolean flag=false;
 		while(low<=high){
 			int mid=(low+high)/2;
-			if(str==s[mid]){
+			if(str.equals(s[mid])){//注意：String比较不要用＝＝
 				flag=true;
 				index=mid;
+				int i=0;
+				while(i<=mid){
+					if(str.equals(s[i])) {
+						index=i;
+						break;
+					}
+					else i++;
+				}
 				break;
 			} else if(str.compareTo(s[mid])<0){
 				high=mid-1;
@@ -45,6 +54,8 @@ public class MyStringArray {
 		return index;   
 	}
 
+
+	
 
 	public void mergeSort(){
 		if(size<2) return;
@@ -99,40 +110,6 @@ public class MyStringArray {
 	}		
 
 
-	/*	private void merge(int low,int middle,int high){
-		temp=s;
-		for(int i=low;i<=high;i++){
-			temp[i]=s[i];
-		}
-		int i=low;
-		int j=middle+1;
-		int k=low;
-
-		while(i<=middle && j<=high){
-			if(temp[i].compareTo(temp[j])<0 || temp[i].compareTo(temp[j])==0){
-				s[k]=temp[i];
-				i++;
-				k++;
-			}else{
-				s[k]=temp[j];
-				j++;
-				k++;
-			}
-		}
-
-		while(i<=middle){
-			s[k]=temp[i];
-			i++;
-			k++;
-		}
-
-		while(j<=high){
-			s[k]=temp[j];
-			j++;
-			k++;
-		}	
-	}		*/
-
 	public void add(String a){
 
 		int i1=this.size();
@@ -158,13 +135,13 @@ public class MyStringArray {
 		return size;
 	}
 
-	public void bubbleSort() { 
+	public String[] bubbleSort() { //正序
 		String tempt; 
 		for(int i=0; i<size-1; i++){ 
 			if(s[i]!=null){
 				for(int j=i+1; j<size; j++){ 
 					if(s[j]!=null){
-						if(s[i].compareTo(s[j])<0){
+						if(s[i].compareTo(s[j])>0){
 							tempt=s[i]; 
 							s[i]=s[j]; 
 							s[j]=tempt; 
@@ -172,9 +149,10 @@ public class MyStringArray {
 					}
 				}
 			}	
-		}		
-		for(int i=0;i<size;i++)  
-			System.out.println(s[i]);  
+		}
+		return s;
+		/*for(int i=0;i<size;i++)  
+			System.out.println(s[i]);  */
 	}
 
 
@@ -209,6 +187,8 @@ public class MyStringArray {
 	public boolean isEmpty(){
 		return s==null;
 	}
+	
+
 
 }
 
