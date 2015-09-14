@@ -187,7 +187,70 @@ public class MyStringArray {
 	public boolean isEmpty(){
 		return s==null;
 	}
+	public void mergeSort2(int l,int r){
+		String[] arr;
+		arr=s;
+		if(l<r){
+			int mid=(l+r)/2;
+			mergeSort2(l,mid);
+			mergeSort2(mid+1,r);
+			merge2(arr,l,mid+1,r);
+		}
+	}
 	
+
+	public void exchange(String[]arr,int p,int n,int i){
+		reverse(arr,p,i);
+		reverse(arr,i+1,n);
+		reverse(arr,p,n);
+
+	}
+
+	public void reverse(String[] arr,int m,int n){
+		int low=m;
+		//n=this.size()-1;
+		int high=n-1;
+		while(low<high){
+			change(arr,low,high);
+			low++;
+			high--;
+		}
+	}	
+	
+	public void merge2(String[] arr,int start,int mid,int end){
+		int i=start;
+		int j=mid;
+		int k=end;
+		while(i<j && j<k){
+			int point=0;
+			while(i<j&& arr[i].compareTo(arr[j])<=0)  ++i;
+			while(j<k&& arr[j].compareTo(arr[i])<=0)  {
+				++j;
+				++point;
+			}
+			exchange(arr,i,j-i,j-i-point);
+			i=i+point;	
+		}
+	}
+	
+	public static void change(String[] arr,int a, int b){
+		//h是数组首地址 后面你传序号就是在首地址基础上 往下查找某个特定元素,传递arr[a]实际是传递地址？
+		
+	    String c=arr[a];
+	    arr[a]=arr[b];
+	    arr[b]=c;
+
+	}
+	
+	/*public void change(String a,String b){  
+	 * 
+	 * ／／ab为临时变量，比如说我调用change(h[0],h[1]); 那么h[0],h[1]的值赋值给了ab，我只是对ab进行了操作，并不能交换h[0],h[1]
+		
+		String c;
+		c=a;
+		a=b;
+		b=c;
+	}*/
 
 
 }
