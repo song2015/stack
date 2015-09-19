@@ -4,7 +4,7 @@ public class CardTest {
 
 	public static void main(String[] args){
 		
-		Card cardA = new Card(Card.CardPicture.HEART,1);
+		Card cardA = new Card(Card.CardPicture.HEART,1);//注意enum用法
 
 		Card cardB = new Card(Card.CardPicture.CLUB, 2);
 		
