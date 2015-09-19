@@ -4,9 +4,10 @@ public class CardTest {
 
 	public static void main(String[] args){
 		
-		Card cardA = new Card(Card.CardPicture.HEART,1);//注意enum用法
+		Card cardA = new Card(Card.CardPicture.HEART,1); //注意enum用法
 
 		Card cardB = new Card(Card.CardPicture.CLUB, 2);
+		Card cardC = new Card(Card.CardPicture.CLUB, 1);
 		
 		System.out.println(cardA.toString());
 		
@@ -15,6 +16,7 @@ public class CardTest {
 		System.out.println(cardA.getNumber());
 		
 		System.out.println(cardB.getNumber());
+		System.out.println(cardA.compareTo(cardC));	
 	}
 
 }
@@ -34,6 +36,8 @@ class Card
 		picture=p;
 		number=num;
 	}
+	
+	
 
 	public String toString() {
 		String symbol;
@@ -56,18 +60,24 @@ class Card
 			numberString += "K";
 		} else if (number == 1){
 			numberString += "A";
-		} else{
+		} else if(number>0&&number<11){
 			numberString += number;
+		}else{
+			numberString+="error";
 		}
-
 		return symbol + "  " + numberString + "  ";
+		
+		
+
 	}
 
 	public CardPicture getPicture(){
 		return picture;
 	}
 	public int getNumber(){
-		return number;
+		if(number>0&&number<14)
+			return number;
+		else return -1;
 	}
 
 	public int compareTo(Card card) {
@@ -79,7 +89,8 @@ class Card
 			return -1;
 		else if( this.getNumber()>card.getNumber() ) 
 			return 1;
-		else return 2;    //if the pictures are the same,number is equal,return 2
+		else 
+			return card.getPicture().compareTo(this.getPicture());    //if the pictures are the same,number is equal,return 2
 	}      
 }
 
