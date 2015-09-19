@@ -1,0 +1,88 @@
+
+public class CardTest {
+	private static CardPicture HEART;
+	private static CardPicture CLUB;
+	private static CardPicture DIAMOND;
+	private static CardPicture SPADE;
+
+	public static void main(String[] args){
+		
+		Card cardA = new Card(HEART,1);
+
+		Card cardB = new Card(CLUB, 2);
+		
+		System.out.println(cardA.toString());
+		
+		System.out.println(cardA.compareTo(cardB));	
+		
+		System.out.println(cardA.getNumber());
+		
+		System.out.println(cardB.getNumber());
+	}
+
+}
+
+enum CardPicture{
+	HEART,CLUB,DIAMOND,SPADE
+}
+
+class Card
+{
+	private CardPicture picture;
+	private int number;
+
+	public Card(CardPicture p,int num){
+		picture=p;
+		number=num;
+	}
+
+	public String toString() {
+		String symbol;
+		String numberString = "";
+
+		if (picture == CardPicture.HEART)
+			symbol = "红心";
+		else if (picture == CardPicture.DIAMOND)
+			symbol = "方块";
+		else if (picture == CardPicture.SPADE)
+			symbol = "黑桃";
+		else
+			symbol = "梅花";
+
+		if (number == 11) {
+			numberString += "J";
+		} else if (number == 12) {
+			numberString += "Q";
+		} else if (number == 13) {
+			numberString += "K";
+		} else if (number == 1){
+			numberString += "A";
+		} else{
+			numberString += number;
+		}
+
+		return symbol + "  " + numberString + "  ";
+	}
+
+	public CardPicture getPicture(){
+		return picture;
+	}
+	public int getNumber(){
+		return number;
+	}
+
+	public int compareTo(Card card) {
+		if (card == null)
+			return -2;    //if the card is null,return 2
+		else if(card.getPicture() == this.getPicture() &&card.getNumber() == this.getNumber())
+			return 0;
+		else if( this.getNumber()<card.getNumber() ) 
+			return -1;
+		else if( this.getNumber()>card.getNumber() ) 
+			return 1;
+		else return 2;    //if the pictures are the same,number is equal,return 2
+	}      
+}
+
+
+
