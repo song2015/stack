@@ -1,15 +1,12 @@
 
 public class CardTest {
-	private static CardPicture HEART;
-	private static CardPicture CLUB;
-	private static CardPicture DIAMOND;
-	private static CardPicture SPADE;
+	
 
 	public static void main(String[] args){
 		
-		Card cardA = new Card(HEART,1);
+		Card cardA = new Card(Card.CardPicture.HEART,1);
 
-		Card cardB = new Card(CLUB, 2);
+		Card cardB = new Card(Card.CardPicture.CLUB, 2);
 		
 		System.out.println(cardA.toString());
 		
@@ -22,14 +19,16 @@ public class CardTest {
 
 }
 
-enum CardPicture{
-	HEART,CLUB,DIAMOND,SPADE
-}
 
 class Card
 {
 	private CardPicture picture;
 	private int number;
+	
+	public enum CardPicture{
+		HEART,CLUB,DIAMOND,SPADE
+	}
+
 
 	public Card(CardPicture p,int num){
 		picture=p;
