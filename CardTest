@@ -21,6 +21,10 @@ public class CardTest {
 
 		System.out.println(cardA.getStringNumber());		
 		System.out.println(cardB.getStringNumber());
+		
+		Card[] array1={cardA,cardB,cardC};
+		
+		permutation(array1);//为什么我不能这样使用呢？
 
 	}
 
@@ -40,6 +44,53 @@ class Card
 		picture=p;
 		number=num;
 	}
+
+	public void permutation(Card[] arr){
+		int l= arr.length;
+		if (l>0){
+			if(l==1) {
+				System.out.println(arr[0].toString());
+				return;
+			}
+			else if(l==2){
+				printArray(arr);
+				exchange(arr,0,1);
+				printArray(arr);
+				exchange(arr,0,1);
+				return;
+			}
+			else if(l>2){
+				for(int n=0;n<l;n++){
+					exchange(arr,n,l-1);
+
+					Card[] arrNew = new Card[l-2];
+					for(int i = 0; i < l-1; i++) {
+						arrNew[i] = arr[i];
+					}
+
+					permutation(arrNew);
+					exchange(arr,n,l-1);
+				}
+				return;
+			}	
+		}
+	}
+
+	public void exchange(Card[] arr1,int i,int j){
+		Card temp;
+		temp=arr1[i];
+		arr1[i]=arr1[j];
+		arr1[j]=temp;
+	}
+
+	public void printArray(Card arr2[]){
+		int l=arr2.length;
+		for(int k=0;k<l;k++){
+			System.out.print(arr2[k].toString()+" ");//不换行
+		}
+		System.out.println();//换行
+	}
+
 
 	public String toString() {
 		String symbol;
