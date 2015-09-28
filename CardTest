@@ -1,22 +1,27 @@
 
-public class CardTest {
-	
+public class CardTest {	
 
 	public static void main(String[] args){
-		
+
 		Card cardA = new Card(Card.CardPicture.HEART,1); //注意enum用法
 
 		Card cardB = new Card(Card.CardPicture.CLUB, 2);
-		Card cardC = new Card(Card.CardPicture.CLUB, 1);
-		
-		System.out.println(cardA.toString());
-		
-		System.out.println(cardA.compareTo(cardB));	
-		
-		System.out.println(cardA.getNumber());
-		
-		System.out.println(cardB.getNumber());
-		System.out.println(cardA.compareTo(cardC));	
+		Card cardC = new Card(Card.CardPicture.CLUB, 10);
+
+		System.out.println(cardA);
+		System.out.println(cardB);
+		System.out.println(cardC);
+
+		cardA.compareTo(cardB);
+		cardA.compareTo(cardC);	
+		cardB.compareTo(cardC);	
+		cardA.compareTo(cardA);	
+
+		System.out.println(cardA.toString());		
+
+		System.out.println(cardA.getStringNumber());		
+		System.out.println(cardB.getStringNumber());
+
 	}
 
 }
@@ -26,22 +31,18 @@ class Card
 {
 	private CardPicture picture;
 	private int number;
-	
+
 	public enum CardPicture{
 		HEART,CLUB,DIAMOND,SPADE
 	}
-
 
 	public Card(CardPicture p,int num){
 		picture=p;
 		number=num;
 	}
-	
-	
 
 	public String toString() {
 		String symbol;
-		String numberString = "";
 
 		if (picture == CardPicture.HEART)
 			symbol = "红心";
@@ -52,45 +53,41 @@ class Card
 		else
 			symbol = "梅花";
 
-		if (number == 11) {
-			numberString += "J";
-		} else if (number == 12) {
-			numberString += "Q";
-		} else if (number == 13) {
-			numberString += "K";
-		} else if (number == 1){
-			numberString += "A";
-		} else if(number>0&&number<11){
-			numberString += number;
-		}else{
-			numberString+="error";
-		}
-		return symbol + "  " + numberString + "  ";
-		
-		
-
+		return symbol + "  " + this.getStringNumber() + "  ";	
 	}
 
 	public CardPicture getPicture(){
 		return picture;
 	}
+
+	public String getStringNumber(){
+		if (number == 11) {
+			return "J";
+		} else if (number == 12) {
+			return "Q";
+		} else if (number == 13) {
+			return "K";
+		} else if (number == 1){
+			return "A";
+		} else if(number>1&&number<11){
+			return ""+number;
+		}else return "wrong card";
+	}
+
 	public int getNumber(){
 		if(number>0&&number<14)
 			return number;
 		else return -1;
 	}
 
-	public int compareTo(Card card) {
-		if (card == null)
-			return -2;    //if the card is null,return 2
-		else if(card.getPicture() == this.getPicture() &&card.getNumber() == this.getNumber())
-			return 0;
+	public void compareTo(Card card) {
+		if (card == null) System.out.println("something wrong with the card");    //if the card is null,return 2
+		else if(card.getNumber() == this.getNumber())
+			System.out.println("equal");
 		else if( this.getNumber()<card.getNumber() ) 
-			return -1;
+			System.out.println("smaller");
 		else if( this.getNumber()>card.getNumber() ) 
-			return 1;
-		else 
-			return card.getPicture().compareTo(this.getPicture());    //if the pictures are the same,number is equal,return 2
+			System.out.println("bigger");
 	}      
 }
 
