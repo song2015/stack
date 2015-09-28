@@ -1,0 +1,52 @@
+package permutation;
+
+public class permutationSelf {//自己写的
+	public static void main(String[] args) {
+
+		String[] test2 = new String[] { "甲", "乙", "丙" }; 
+		permu(test2, 0, 2); 
+	}
+
+	public static void exchange(String[] arr,int i,int j){
+		String temp;
+		temp=arr[i];
+		arr[i]=arr[j];
+		arr[j]=temp;
+	}
+
+	public static void printArray(String arr[]){
+		int l=arr.length;
+		for(int i=0;i<l;i++){
+			System.out.print(arr[i]+" ");//不换行
+		}
+		System.out.println();//换行
+	}
+
+	public static void permu(String[] arr,int i,int j){
+		if (j>i){
+			int l=j-i+1;
+			if(l==0) return;
+			else if(l==1) {
+				System.out.println(arr[0]);
+				return;
+			}
+			else if(l==2){
+				printArray(arr);
+				exchange(arr,0,1);
+				printArray(arr);
+				exchange(arr,0,1);
+				return;
+			}
+			else if(l>2){
+				
+				for(int n=i;n<=j;n++){
+					exchange(arr,n,j);
+					permu(arr,i,j-1);
+					exchange(arr,n,j);
+				}
+			
+			}
+		}
+	}
+}
+
