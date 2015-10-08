@@ -42,7 +42,7 @@ public class CardTest {
 class Card
 {
 	private static final Card Card = null;
-	private CardPicture picture;
+	private static CardPicture picture;
 	private int number;
 	
 
@@ -103,18 +103,34 @@ class Card
 
 
 	public String toString() {
+		
+		
 		String symbol;
 
 		if (picture == CardPicture.HEART)
-			symbol = "红心";
+			symbol = "♥";
 		else if (picture == CardPicture.DIAMOND)
-			symbol = "方块";
+			symbol = "♦";
 		else if (picture == CardPicture.SPADE)
-			symbol = "黑桃";
+			symbol = "♠";
 		else
-			symbol = "梅花";
+			symbol = "♣";
 
 		return symbol + "  " + this.getStringNumber() + "  ";	
+	}
+	public String getSymbol(){
+		String symbol;
+
+		if (picture == CardPicture.HEART)
+			symbol = "♥";
+		else if (picture == CardPicture.DIAMOND)
+			symbol = "♦";
+		else if (picture == CardPicture.SPADE)
+			symbol = "♠";
+		else
+			symbol = "♣";
+
+		return symbol;
 	}
 	
 	public void printOneCard() {
@@ -128,6 +144,7 @@ class Card
 			symbol = "♠";
 		else
 			symbol = "♣";
+		
 		System.out.println("┌────────┐");
 		System.out.println("│"+symbol + " " + this.getStringNumber() + "     "+"│");	
 		System.out.println("│        │");
@@ -135,7 +152,7 @@ class Card
 		System.out.println("└────────┘");
 	}
 	
-	public void printSecondCard(){
+	public static void printSecondCard(Card card,StringBuffer sb1,StringBuffer sb2,StringBuffer sb3,StringBuffer sb4,StringBuffer sb5){
 		String symbol;
 
 		if (picture == CardPicture.HEART)
@@ -146,22 +163,41 @@ class Card
 			symbol = "♠";
 		else
 			symbol = "♣";
-		System.out.println("┌────");
-		System.out.println("│"+symbol+" "+this.getStringNumber()+" ");	
-		System.out.println("│    ");
-		System.out.println("│    ");
-		System.out.println("└────");
+		sb1.append("┌────");
+		sb2.append("│"+symbol+" "+card.getStringNumber()+" ");
+		sb3.append("│    ");
+		sb4.append("│    ");
+		sb5.append("└────");
+		
 	}
 	
 	public static void printCard(Card[] arr){
 		if(arr.length==0) return;
 		if(arr.length==1) arr[0].printOneCard();
 		if(arr.length>1){
+			StringBuffer sb1=new StringBuffer();
+			StringBuffer sb2=new StringBuffer();
+			StringBuffer sb3=new StringBuffer();
+			StringBuffer sb4=new StringBuffer();
+			StringBuffer sb5=new StringBuffer();
 			
 			for(int i=0;i<arr.length-1;i++){
-				arr[i].printSecondCard();
+				printSecondCard(arr[i],sb1,sb2,sb3,sb4,sb5);
 			}
-			arr[arr.length-1].printOneCard();
+			sb1.append("┌────────┐");
+			sb2.append("│"+arr[arr.length-1].getSymbol()+" "+arr[arr.length-1].getStringNumber()+" ");
+			sb3.append("│        │");
+			sb4.append("│        │");
+			sb5.append("└────────┘");
+			
+			System.out.println(sb1.toString());
+			System.out.println(sb2.toString());
+			System.out.println(sb3.toString());
+			System.out.println(sb4.toString());
+			System.out.println(sb5.toString());
+			
+			
+			//arr[arr.length-1].printOneCard();
 		}
 	}
 
