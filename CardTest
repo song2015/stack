@@ -8,7 +8,7 @@ public class CardTest {
 		Card cardA = new Card(Card.CardPicture.HEART,1); //注意enum用法
 
 		Card cardB = new Card(Card.CardPicture.CLUB, 2);
-		Card cardC = new Card(Card.CardPicture.CLUB, 10);
+		Card cardC = new Card(Card.CardPicture.CLUB, 13);
 
 		System.out.println(cardA);
 		System.out.println(cardB);
@@ -24,11 +24,13 @@ public class CardTest {
 		System.out.println(cardA.getStringNumber());		
 		System.out.println(cardB.getStringNumber());
 		
-		cardA.printCard();
+		cardA.printOneCard();
 		
 		Card[] array1={cardA,cardB,cardC};
 		
 		Card.permutation(array1);
+		Card.printCard(array1);
+		
 
 	}
 
@@ -115,7 +117,7 @@ class Card
 		return symbol + "  " + this.getStringNumber() + "  ";	
 	}
 	
-	public void printCard() {
+	public void printOneCard() {
 		String symbol;
 
 		if (picture == CardPicture.HEART)
@@ -132,7 +134,39 @@ class Card
 		System.out.println("│        │");
 		System.out.println("└────────┘");
 	}
+	
+	public void printSecondCard(){
+		String symbol;
 
+		if (picture == CardPicture.HEART)
+			symbol = "♥";
+		else if (picture == CardPicture.DIAMOND)
+			symbol = "♦";
+		else if (picture == CardPicture.SPADE)
+			symbol = "♠";
+		else
+			symbol = "♣";
+		System.out.println("┌────");
+		System.out.println("│"+symbol+" "+this.getStringNumber()+" ");	
+		System.out.println("│    ");
+		System.out.println("│    ");
+		System.out.println("└────");
+	}
+	
+	public static void printCard(Card[] arr){
+		if(arr.length==0) return;
+		if(arr.length==1) arr[0].printOneCard();
+		if(arr.length>1){
+			
+			for(int i=0;i<arr.length-1;i++){
+				arr[i].printSecondCard();
+			}
+			arr[arr.length-1].printOneCard();
+		}
+	}
+
+	
+	
 	public CardPicture getPicture(){
 		return picture;
 	}
