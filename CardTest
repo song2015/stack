@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class CardTest {	
 
@@ -22,19 +24,25 @@ public class CardTest {
 		System.out.println(cardA.getStringNumber());		
 		System.out.println(cardB.getStringNumber());
 		
+		cardA.printCard();
+		
 		Card[] array1={cardA,cardB,cardC};
 		
-		permutation(array1);//为什么我不能这样使用呢？
+		cardA.permutation(array1);
 
 	}
+
+	
 
 }
 
 
 class Card
 {
+	private static final Card Card = null;
 	private CardPicture picture;
 	private int number;
+	
 
 	public enum CardPicture{
 		HEART,CLUB,DIAMOND,SPADE
@@ -45,7 +53,7 @@ class Card
 		number=num;
 	}
 
-	public void permutation(Card[] arr){
+	public static void permutation(Card[] arr){
 		int l= arr.length;
 		if (l>0){
 			if(l==1) {
@@ -76,14 +84,14 @@ class Card
 		}
 	}
 
-	public void exchange(Card[] arr1,int i,int j){
+	public static void exchange(Card[] arr1,int i,int j){
 		Card temp;
 		temp=arr1[i];
 		arr1[i]=arr1[j];
 		arr1[j]=temp;
 	}
 
-	public void printArray(Card arr2[]){
+	public static void printArray(Card arr2[]){
 		int l=arr2.length;
 		for(int k=0;k<l;k++){
 			System.out.print(arr2[k].toString()+" ");//不换行
@@ -105,6 +113,24 @@ class Card
 			symbol = "梅花";
 
 		return symbol + "  " + this.getStringNumber() + "  ";	
+	}
+	
+	public void printCard() {
+		String symbol;
+
+		if (picture == CardPicture.HEART)
+			symbol = "♥";
+		else if (picture == CardPicture.DIAMOND)
+			symbol = "♦";
+		else if (picture == CardPicture.SPADE)
+			symbol = "♠";
+		else
+			symbol = "♣";
+		System.out.println("┌────────┐");
+		System.out.println("│"+symbol + " " + this.getStringNumber() + "     "+"│");	
+		System.out.println("│        │");
+		System.out.println("│        │");
+		System.out.println("└────────┘");
 	}
 
 	public CardPicture getPicture(){
